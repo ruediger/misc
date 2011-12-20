@@ -1,18 +1,23 @@
 #!/bin/bash
+# Copyright (C) 2011 by Rüdiger Sonderfeld <ruediger@c-plusplus.de>
+# License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
+#
+# This script queries the minecraft server status and displays the information.
+# Thanks to http://www.wiki.vg/Main_Page#Beta
 
 set -e -u
 
 help() {
-    cat <<EOF
+cat <<EOF
 Usage $0 <host> [<port>] -h -v -d <delim>
 
--v be more verbose
--h display help
--d output everything in one line separated by delim
+  -v  be more verbose.
+  -h  display help message.
+  -d  output everything in one line separated by delim.
 
-Default port is 25565.
+Queries the status of the minecraft server on <host> and prints the information. Default port is 25565.
 EOF
-    exit 1
+exit 1
 }
 
 while getopts "::hvd:" opt; do
@@ -31,7 +36,7 @@ while getopts "::hvd:" opt; do
             echo "Unkown option '$OPTARG'!"
             help
             ;;
-    esac
+    esac    
 done
 
 USEDELIM="${USEDELIM:-0}"
@@ -50,18 +55,33 @@ if [[ "$VERBOSE" == "1" ]]; then
     echo "Querying $HOST:$PORT"
 fi
 
+MCDELIM=$(echo -ne '\xA7') # string is split by \xA7. '§' in ISO 8859-1.
+
 exec 5<>"/dev/tcp/$HOST/$PORT"
 echo -ne '\xFE' >&5
-REPLY=`cut -b 4- <&5`
+GOT=$(cat <&5) # reply doesn't look like UTF-16BE but spec says so $(iconv -f UTF-16BE <&5)
 
-MCDELIM=`echo -ne '\xA7'`
+PREFIX=$(printf '%s' $GOT | cut -b 1)
+if [[ "$PREFIX" != "$(echo -ne '\xFF')" ]]; then
+    echo "Unkown server reply"
+    exit 1
+fi
 
-MOTD=`echo -n "$REPLY" | cut -d "$MCDELIM" -f 1`
-USERS=`echo -n "$REPLY" | cut -d "$MCDELIM" -f 2`
-SLOTS=`echo -n "$REPLY" | cut -d "$MCDELIM" -f 3`
+REPLY=$(printf '%s' "$GOT" | cut -b 2-) # strip magic number and size
 
-if [[ "$USEDELIM" == "1" ]]; then
-    echo "$HOST$DELIM$PORT$DELIM$MOTD$DELIM$USERS$DELIM$SLOTS"
+if [[ "$REPLY" =~ ([[:print:]]*)$MCDELIM([[:digit:]]*)$MCDELIM([[:digit:]]*) ]]; then 
+
+    MOTD="${BASH_REMATCH[1]}"
+    USERS="${BASH_REMATCH[2]}"
+    SLOTS="${BASH_REMATCH[3]}"
+
+    if [[ "$USEDELIM" == "1" ]]; then
+        echo "$HOST$DELIM$PORT$DELIM$MOTD$DELIM$USERS$DELIM$SLOTS"
+    else
+        echo -e "$HOST:$PORT: $MOTD\n$USERS/$SLOTS players online"
+    fi
+
 else
-    echo -e "$HOST:$PORT: $MOTD\n$USERS/$SLOTS players online"
+    echo "Unkown server reply format"
+    exit 1
 fi
