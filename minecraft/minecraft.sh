@@ -8,7 +8,7 @@
 set -e -u
 
 help() {
-cat <<EOF
+    cat >&2 <<EOF
 Usage $0 <host> [<port>] -h -v -d <delim>
 
   -v  be more verbose.
@@ -17,7 +17,7 @@ Usage $0 <host> [<port>] -h -v -d <delim>
 
 Queries the status of the minecraft server on <host> and prints the information. Default port is 25565.
 EOF
-exit 1
+    exit 1
 }
 
 while getopts "::hvd:" opt; do
@@ -33,7 +33,7 @@ while getopts "::hvd:" opt; do
             VERBOSE=1
             ;;
         \?)
-            echo "Unkown option '$OPTARG'!"
+            echo "Unkown option '$OPTARG'!" >&2
             help
             ;;
     esac    
@@ -44,7 +44,7 @@ VERBOSE="${VERBOSE:-0}"
 
 shift $((OPTIND-1))
 if [ "$#" == 0 ]; then
-    echo "No hostname given!"
+    echo "No hostname given!" >&2
     help
     exit 1
 fi
@@ -55,19 +55,19 @@ if [[ "$VERBOSE" == "1" ]]; then
     echo "Querying $HOST:$PORT"
 fi
 
-MCDELIM=$(echo -ne '\xA7') # string is split by \xA7. '§' in ISO 8859-1.
+MCDELIM='§'
 
+# Connect to server and send 0xFE to request status
 exec 5<>"/dev/tcp/$HOST/$PORT"
 echo -ne '\xFE' >&5
-GOT=$(cat <&5) # reply doesn't look like UTF-16BE but spec says so $(iconv -f UTF-16BE <&5)
+# strip first four bytes (magic number, length), delete newline added by cut, and convert from utf16-be to locale
+REPLY=$(cut -b 4- <&5 | tr -d '\n' | iconv -f UTF-16BE -c)
 
-PREFIX=$(printf '%s' $GOT | cut -b 1)
-if [[ "$PREFIX" != "$(echo -ne '\xFF')" ]]; then
-    echo "Unkown server reply"
-    exit 1
-fi
-
-REPLY=$(printf '%s' "$GOT" | cut -b 2-) # strip magic number and size
+#PREFIX=$(printf '%s' $GOT | cut -b 1)
+#if [[ "$PREFIX" != "$(echo -ne '\xFF')" ]]; then
+#    echo "Unkown server reply" >&2
+#    exit 1
+#fi
 
 if [[ "$REPLY" =~ ([[:print:]]*)$MCDELIM([[:digit:]]*)$MCDELIM([[:digit:]]*) ]]; then 
 
@@ -82,6 +82,6 @@ if [[ "$REPLY" =~ ([[:print:]]*)$MCDELIM([[:digit:]]*)$MCDELIM([[:digit:]]*) ]];
     fi
 
 else
-    echo "Unkown server reply format"
+    echo "Unkown server reply format" >&2
     exit 1
 fi
