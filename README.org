@@ -1,0 +1,38 @@
+# -*- mode:org; mode:visual-line; mode:flyspell; coding:utf-8; -*-
+#+TITLE: Misc Stuff
+#+AUTHOR: Rüdiger Sonderfeld
+#+EMAIL: ruediger@c-plusplus.de
+#+LANGUAGE: en
+
+This is a collection of some scripts and snippets I wrote.
+
+* minecraft - Query minecraft server status
+=minecraft/minecraft.sh= can be used to query the status of [[http://minecraft.net][Minecraft]] servers (description, users online, maxium users). It is quite a hacky bash script and probably only works on Linux.
+
+#+BEGIN_SRC sh
+$ ./minecraft.sh someserver
+someserver:25565: server description
+3/10 players online
+$ ./minecraft.sh -d ':' someserver
+someserver:25565:server description:3:10
+#+END_SRC
+
+The =-d= option can be used to set a delimiter to make the output easier to parse. See the [[http://www.wiki.vg/Main_Page#Beta][Minecraft Coalition Wiki]] for a specification of Minecraft's server protocol.
+
+* rfkill - disable/enable radio transmission (wifi, bluetooth, etc.)
+[[http://git.kernel.org/?p=linux/kernel/git/next/linux-next-history.git;a=blob;f=Documentation/rfkill.txt][Rfkill]] is a Linux subsystem to disable/enable radio transmitters (wifi, bluetooth, etc.). =rfkill.c= is a small program to use this subsystem.
+
+#+BEGIN_SRC sh
+$ ./rfkill --block bt      # blocks bluetooth
+$ ./rfkill --unblock bt    # unblocks bluetooth
+$ ./rfkill --list          # list devices with rfkill support
+id      type    state
+0       bt      not blocked
+1       wlan    not blocked
+#+END_SRC
+
+* apl - contains some APL examples
+
+- trans.apl :: simple rotation matrix
+- charcount.apl :: reads a file =foo.txt= and prints a sorted character count
+- mastermind.apl :: a quick game of mastermind in APL
