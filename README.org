@@ -6,6 +6,16 @@
 
 This is a collection of some scripts and snippets I wrote.
 
+* apl - contains some APL examples
+
+- trans.apl :: simple rotation matrix
+- charcount.apl :: reads a file =foo.txt= and prints a sorted character count
+- mastermind.apl :: a quick game of mastermind in APL
+
+* c++utils - contains some examples and utilities for C++
+
+- log2.c++ :: =floor_log2= function to calculate $\lfloor \log_2(i) \rfloor$.
+
 * minecraft - Query minecraft server status
 =minecraft/minecraft.sh= can be used to query the status of [[http://minecraft.net][Minecraft]] servers (description, users online, maxium users). It is quite a hacky bash script and probably only works on Linux.
 
@@ -30,9 +40,3 @@ id      type    state
 0       bt      not blocked
 1       wlan    not blocked
 #+END_SRC
-
-* apl - contains some APL examples
-
-- trans.apl :: simple rotation matrix
-- charcount.apl :: reads a file =foo.txt= and prints a sorted character count
-- mastermind.apl :: a quick game of mastermind in APL
