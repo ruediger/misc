@@ -6,6 +6,25 @@
 
 This is a collection of some scripts and snippets I wrote.
 
+* apl - contains some APL examples
+
+- trans.apl :: simple rotation matrix
+- charcount.apl :: reads a file =foo.txt= and prints a sorted character count
+- mastermind.apl :: a quick game of mastermind in APL
+
+* gcc - a specs file improving =-Wextra=
+Turns =-Wextra= into
+#+BEGIN_EXAMPLE
+-std=c++0x -pedantic-errors -Wall -Wextra -Weffc++ -Wlogical-op -Wdouble-promotion -Wmissing-declarations -Wsign-conversion -Wconversion -Wfloat-equal -Wredundant-decls -Winit-self -Woverloaded-virtual -Wnon-virtual-dtor -Wshadow -Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast -Wcast-qual -Wcast-align
+#+END_EXAMPLE
+
+Usage
+#+BEGIN_SRC sh
+$ g++ -pipe -specs=/path/to/misc/gcc/warningspecs -Wextra -g3 foo.c++
+#+END_SRC
+
+See http://gcc.gnu.org/onlinedocs/gcc/Spec-Files.html#Spec-Files
+
 * minecraft - Query minecraft server status
 =minecraft/minecraft.sh= can be used to query the status of [[http://minecraft.net][Minecraft]] servers (description, users online, maxium users). It is quite a hacky bash script and probably only works on Linux.
 
@@ -31,8 +50,3 @@ id      type    state
 1       wlan    not blocked
 #+END_SRC
 
-* apl - contains some APL examples
-
-- trans.apl :: simple rotation matrix
-- charcount.apl :: reads a file =foo.txt= and prints a sorted character count
-- mastermind.apl :: a quick game of mastermind in APL
