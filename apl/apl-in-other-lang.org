@@ -1,0 +1,24 @@
+#-*- mode:org; mode:visual-line; mode:flyspell; coding:utf-8; -*-
+#+TITLE: APL In Other Programming Languages
+#+AUTHOR: Rüdiger Sonderfeld
+#+EMAIL: ruediger@c-plusplus.de
+#+LANGUAGE: en
+
+APL might be forgotten by now. But some of its functionality can be found in other programming languages especially in math centric environments.
+
+Incomplete list of APL like functionality in other languages.
+
+| APL | Description      | Mathematica                   | Octave/Matlab    |
+|-----+------------------+-------------------------------+------------------|
+| A⌽B | Rotate           | =RotateLeft[B,A]/RotateRight= |                  |
+| ⍳B  | Index Generator  | =Range[B]=                    |                  |
+| A↑B | Take             | =Take[B,A]=                   |                  |
+| A↓B | Drop             | =Drop[B,A]=                   |                  |
+| ⌊B  | Floor            | =Floor[B]=                    |                  |
+| ⌈B  | Ceiling          | =Ceiling[B]=                  |                  |
+| ⍴B  | Shape/Dimensions | =Dimensions[B]=               |                  |
+| A⍴B | Reshape          | =Partition[B, A+]=            | =reshape(B, A+)= |
+| ... |                  |                               |                  |
+
+
+
