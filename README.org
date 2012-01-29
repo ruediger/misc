@@ -27,7 +27,7 @@ Usage
 $ g++ -pipe -specs=/path/to/misc/gcc/warningspecs -Wextra -g3 foo.c++
 #+END_SRC
 
-See http://gcc.gnu.org/onlinedocs/gcc/Spec-Files.html#Spec-Files
+See [[http://gcc.gnu.org/onlinedocs/gcc/Spec-Files.html#Spec-Files]]
 
 * minecraft - Query minecraft server status
 =minecraft/minecraft.sh= can be used to query the status of [[http://minecraft.net][Minecraft]] servers (description, users online, maxium users). It is quite a hacky bash script and probably only works on Linux.
@@ -53,7 +53,4 @@ id      type    state
 0       bt      not blocked
 1       wlan    not blocked
 #+END_SRC
-<<<<<<< HEAD
 
-=======
->>>>>>> a6692e344c3b9ba26c330b7a87102b38c144ff40
