@@ -1,0 +1,40 @@
+% -*- mode:LaTeX; coding:utf-8; TeX-source-correlate-mode:t; -*-
+% For org table support mode:orgtbl;
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt,a4paper]{article}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+  \usepackage{xunicode}
+  \defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
+  %\setromanfont{Hoefler Text}
+  \setromanfont{Adobe Garamond Pro}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+\usepackage{microtype}
+\usepackage[english]{babel} % english,ngerman see 
+\usepackage{etex}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cleveref}
+\usepackage{comment}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage[section]{placeins}
+\usepackage{parskip}
+%\usetikzlibrary{calc}
+\SendSettingsToPgf
+
+\title{Title}
+\author{Rüdiger \textsc{Sonderfeld}}
+
+\begin{document}
+\maketitle
+\end{document}

@@ -1,2 +1,7 @@
 a.out
 /README.html
+latex/auto/*.el
+*.aux
+*.log
+*.out
+*.pdf

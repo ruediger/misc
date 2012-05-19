@@ -29,6 +29,17 @@ $ g++ -pipe -specs=/path/to/misc/gcc/warningspecs -Wextra -g3 foo.c++
 
 See [[http://gcc.gnu.org/onlinedocs/gcc/Spec-Files.html#Spec-Files]]
 
+* latex - a latex template file
+Includes all the useful packages.
+
+Git Ignore file:
+#+BEGIN_EXAMPLE
+auto/*.el
+*.aux
+*.log
+*.out
+*.pdf
+#+END_EXAMPLE
 * minecraft - Query minecraft server status
 =minecraft/minecraft.sh= can be used to query the status of [[http://minecraft.net][Minecraft]] servers (description, users online, maxium users). It is quite a hacky bash script and probably only works on Linux.
 
