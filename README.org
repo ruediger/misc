@@ -11,6 +11,7 @@ This is a collection of some scripts and snippets I wrote.
 - trans.apl :: simple rotation matrix
 - charcount.apl :: reads a file =foo.txt= and prints a sorted character count
 - mastermind.apl :: a quick game of mastermind in APL
+- roman.apl :: Convert Arabic to Roman numbers. This problem was part (Problem 2) of the [[http://www.dyalog.com/contest_2012/][2012 International APL Contest]].
 
 * c++utils - contains some examples and utilities for C++
 
