@@ -9,13 +9,16 @@
   \defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
   %\setromanfont{Hoefler Text}
   \setromanfont{Adobe Garamond Pro}
+  \usepackage{polyglossia}
+  \setmainlanguage{english}
+  %\setotherlanguage[spelling=new]{german}
 \else
   \usepackage[utf8]{inputenc}
   \usepackage[T1]{fontenc}
   \usepackage{lmodern}
+  \usepackage[english]{babel} % english,ngerman
 \fi
 \usepackage{microtype}
-\usepackage[english]{babel} % english,ngerman see 
 \usepackage{etex}
 \usepackage{hyperref}
 \usepackage{amsmath}
