@@ -63,18 +63,11 @@ rfkill_state_to_string(struct rfkill_event const *e) {
 int
 open_dev_rfkill(bool write) {
   int const flags = write ? O_RDWR : O_RDONLY;
-  int const fd = open(DEV_RFKILL, flags);
+  int const fd = open(DEV_RFKILL, flags|O_NONBLOCK);
   if(fd == -1) {
     perror("open");
     exit(1);
   }
-
-  if(fcntl(fd, F_SETFL, O_NONBLOCK) < 0) {
-    close(fd);
-    perror("fcntl");
-    exit(2);
-  }
-
   return fd;
 }
 
