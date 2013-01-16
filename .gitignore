@@ -5,3 +5,4 @@ latex/auto/*.el
 *.log
 *.out
 *.pdf
+/latex/template.synctex.gz
