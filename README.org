@@ -67,3 +67,5 @@ id      type    state
 1       wlan    not blocked
 #+END_SRC
 
+* yt-music - download music from YouTube and reencode it as Opus if necessary
+This is a simple wrapper script for [[http://rg3.github.com/youtube-dl/][youtube-dl]].  It reads URLs from clipboard and reencodes AAC files as Opus.  Requires xclip, opusenc, youtube-dl.
