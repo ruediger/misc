@@ -30,9 +30,21 @@
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{tikz}
+%\usetikzlibrary{calc}
 \usepackage[section]{placeins}
 \usepackage{parskip}
-%\usetikzlibrary{calc}
+
+\usepackage[
+    backend=biber,
+    style=numeric,
+    sortlocale=en_US,
+    natbib=true,
+    url=false,
+    doi=true,
+    eprint=false
+]{biblatex}
+\addbibresource{ref.bib}
+
 \SendSettingsToPgf
 
 \title{Title}
@@ -40,4 +52,6 @@
 
 \begin{document}
 \maketitle
+
+\printbibliography[heading=bibintoc]
 \end{document}
