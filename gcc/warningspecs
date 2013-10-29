@@ -1,2 +1,3 @@
 *cc1plus:
-%{Wextra:-std=c++0x -pedantic-errors -Wall -Wextra -Weffc++ -Wlogical-op -Wdouble-promotion -Wmissing-declarations -Wsign-conversion -Wconversion -Wfloat-equal -Wredundant-decls -Winit-self -Woverloaded-virtual -Wnon-virtual-dtor -Wshadow -Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast -Wcast-qual -Wcast-align}
+%{Wextra:-std=c++0x -pedantic-errors -Wall -Wextra -Weffc++ -Wlogical-op -Wdouble-promotion -Wmissing-declarations -Wsign-conversion -Wconversion -Wfloat-equal -Wredundant-decls -Winit-self -Woverloaded-virtual -Wnon-virtual-dtor -Wshadow -Wsign-promo -Wstrict-aliasing=1 -Wold-style-cast -Wcast-qual -Wcast-align -Wsuggest-attribute=pure -Wsuggest-attribute=const -Wsuggest-attribute=noreturn} %<Wextreme
+
