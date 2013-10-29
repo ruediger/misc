@@ -39,7 +39,9 @@ out=($(<"$tmp"))
 rm -f -- "$tmp"
 trap - EXIT
 
-if [[ ${out[-1]} =~ Destination:\ (.*) ]]; then
+# Maybe need to add $'\n' to beginning/end of $out for first/last line.
+destination_re=$'\n\[avconv\]\ Destination:\ (.*)\n'
+if [[ "${out[*]}" =~ $destination_re ]]; then
   filename=${BASH_REMATCH[1]}
   echo $filename
   if [[ $filename =~ (.*)\.(aac|m4a) ]]; then
