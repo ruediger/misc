@@ -42,9 +42,9 @@ trap - EXIT
 if [[ ${out[-1]} =~ Destination:\ (.*) ]]; then
   filename=${BASH_REMATCH[1]}
   echo $filename
-  if [[ $filename =~ (.*)\.aac ]]; then
-      to_wav=${filename/%.aac/.wav}
-      to_opus=${filename/%.aac/.opus}
+  if [[ $filename =~ (.*)\.(aac|m4a) ]]; then
+      to_wav=${filename/%.${BASH_REMATCH[2]}/.wav}
+      to_opus=${to_wav/%.wav/.opus}
       $ffmpeg -i "$filename" "$to_wav" && opusenc --music "$to_wav" "$to_opus" && echo $to_opus
       rm -f -- "$to_wav" "$filename"
   else
