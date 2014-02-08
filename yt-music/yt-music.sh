@@ -1,5 +1,7 @@
 #!/bin/bash
 
+YDL=~/src/youtube-dl/youtube-dl
+
 function die() {
   echo "Die! $@"
   exit 1
@@ -30,7 +32,7 @@ ffmpeg=avconv
 tmp=$(tempfile) || die "Tmpfile"
 trap "rm -f -- '$tmp'" EXIT
 
-youtube-dl --extract-audio -t "${list[@]}" | tee "$tmp"
+$YDL --extract-audio -t "${list[@]}" | tee "$tmp"
 
 IFS=$'\n'
 declare -a out
