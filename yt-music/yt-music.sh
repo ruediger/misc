@@ -42,10 +42,11 @@ rm -f -- "$tmp"
 trap - EXIT
 
 # Maybe need to add $'\n' to beginning/end of $out for first/last line.
-destination_re=$'\n\[avconv\]\ Destination:\ (.*)\n'
+#destination_re=$'\n\[avconv\]\ Destination:\ (.*)\n'
+destination_re=$'\n\[download\]\ Destination:\ ([^\n]*)\n'
 if [[ "${out[*]}" =~ $destination_re ]]; then
   filename=${BASH_REMATCH[1]}
-  echo $filename
+  echo "Filename: $filename"
   if [[ $filename =~ (.*)\.(aac|m4a) ]]; then
       to_wav=${filename/%.${BASH_REMATCH[2]}/.wav}
       to_opus=${to_wav/%.wav/.opus}
