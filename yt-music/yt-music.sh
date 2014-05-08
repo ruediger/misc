@@ -32,7 +32,7 @@ ffmpeg=avconv
 tmp=$(tempfile) || die "Tmpfile"
 trap "rm -f -- '$tmp'" EXIT
 
-$YDL --extract-audio -t "${list[@]}" | tee "$tmp"
+$YDL --extract-audio --prefer-free-formats  --add-metadata -t "${list[@]}" | tee "$tmp"
 
 IFS=$'\n'
 declare -a out
