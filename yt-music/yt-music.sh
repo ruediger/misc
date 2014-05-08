@@ -1,6 +1,6 @@
 #!/bin/bash
 
-YDL=~/src/youtube-dl/youtube-dl
+YDL=youtube-dl
 
 function die() {
   echo "Die! $@"
