@@ -50,7 +50,7 @@ if [[ "${out[*]}" =~ $destination_re ]]; then
   if [[ $filename =~ (.*)\.(aac|m4a) ]]; then
       to_wav=${filename%.${BASH_REMATCH[2]}}.wav
       to_opus=${to_wav%.wav}.opus
-      $ffmpeg -i "$filename" "$to_wav" && opusenc --music "$to_wav" "$to_opus" && echo $to_opus
+      $ffmpeg -i "$filename" "$to_wav" && opusenc "$to_wav" "$to_opus" && echo $to_opus
       rm -f -- "$to_wav" "$filename"
   else
       echo $filename
