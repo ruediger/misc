@@ -41,6 +41,8 @@ auto/*.el
 *.out
 *.pdf
 *.synctex.gz
+*.bcf
+*.run.xml
 #+END_EXAMPLE
 * minecraft - Query minecraft server status
 =minecraft/minecraft.sh= can be used to query the status of [[http://minecraft.net][Minecraft]] servers (description, users online, maxium users). It is quite a hacky bash script and probably only works on Linux.
