@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Copyright (C) 2011 by Rüdiger Sonderfeld <ruediger@c-plusplus.de>
 # License: GNU GPL, version 3 or later; http://www.gnu.org/copyleft/gpl.html
 #
