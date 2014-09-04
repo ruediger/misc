@@ -2,22 +2,22 @@
 % For org table support mode:orgtbl;
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[12pt,a4paper]{article}
-\usepackage{ifxetex}
-\ifxetex
-  \usepackage{fontspec}
-  \usepackage{xunicode}
-  \defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style
-  %\setromanfont{Hoefler Text}
-  \setromanfont{Adobe Garamond Pro}
-  \usepackage{polyglossia}
-  \setmainlanguage{english}
-  %\setotherlanguage[spelling=new]{german}
-\else
-  \usepackage[utf8]{inputenc}
-  \usepackage[T1]{fontenc}
-  \usepackage{lmodern}
+\usepackage{etoolbox,ifxetex,ifluatex}
+\ifboolexpr{bool{xetex} or bool{luatex}}{%
+  \usepackage{fontspec}%
+  \usepackage{xunicode}%
+  \defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting style%
+  %\setromanfont{Hoefler Text}%
+  \setromanfont{Adobe Garamond Pro}%
+  \usepackage{polyglossia}%
+  \setmainlanguage{english}%
+  %\setotherlanguage[spelling=new]{german}%
+}{%
+  \usepackage[utf8]{inputenc}%
+  \usepackage[T1]{fontenc}%
+  \usepackage{lmodern}%
   \usepackage[english]{babel} % english,ngerman
-\fi
+}%
 \usepackage{microtype}
 \usepackage{etex}
 \usepackage{amsmath}
